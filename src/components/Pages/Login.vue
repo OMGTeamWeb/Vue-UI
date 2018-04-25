@@ -5,8 +5,8 @@
       <v-flex xs12>
         <v-form v-model="valid">
           <v-text-field
-          label="Password"
-          v-model="password"
+          label="name"
+          v-model="name"
           :counter="10"
           required
           ></v-text-field>
@@ -18,7 +18,7 @@
         </v-form>
       </v-flex>
       <v-flex xs12 sm5 md5 offset-xs10 offset-lg2>
-         <v-btn color="info">Login</v-btn>
+         <v-btn @click="login" color="info">Login</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -30,8 +30,18 @@
 export default {
   data() {
     return {
-      password: '',
+      name: '',
       email: ''
+    }
+  },
+  methods: {
+    login() {
+      console.log('login')
+      let loginData = {
+      name:this.name,
+      email:this.email
+      }
+      this.$store.dispatch('login',loginData)
     }
   }
 }
