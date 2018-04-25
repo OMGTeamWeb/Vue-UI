@@ -1,36 +1,55 @@
 <template>
   <div>
-    <form>
-     <v-text-field
-       label="name"
-       v-model="task.title"
-       required
-     ></v-text-field>
-     <v-text-field
-       label="description"
-       v-model="task.description"
-       required
-     ></v-text-field>
-     <v-text-field
-       label="dueDate (aaaa-mm-dd)"
-       v-model="task.dueDate"
-       required
-     ></v-text-field>
-   <v-btn @click="addTask()" color="success">Success</v-btn>
- </form>
-    <v-list two-line>
-         <template v-for="(item, index) in items">
+   <v-card-text style="position: relative">
+     <v-btn
+     absolute
+     dark
+     fab
+     top
+     right
+     color="blue"
+     @click.stop="dialog2 = true"
+     >
+     <v-icon>+</v-icon>
+   </v-btn>
 
-           <v-list-tile avatar :key="item.title" @click="">
 
-             <v-list-tile-content>
-               <v-list-tile-title v-html="item.title"></v-list-tile-title>
-               <v-list-tile-sub-title v-html="item.description"></v-list-tile-sub-title>
-               <v-list-tile-sub-title v-html="item.dueDate"></v-list-tile-sub-title>
-             </v-list-tile-content>
-           </v-list-tile>
-         </template>
-       </v-list>
+  </v-card-text>
+      <v-list two-line>
+           <template v-for="(item, index) in items">
+
+             <v-list-tile avatar :key="item.title" @click="">
+
+               <v-list-tile-content>
+                 <v-list-tile-title v-html="item.title"></v-list-tile-title>
+                 <v-list-tile-sub-title v-html="item.description"></v-list-tile-sub-title>
+                 <v-list-tile-sub-title v-html="item.dueDate"></v-list-tile-sub-title>
+               </v-list-tile-content>
+             </v-list-tile>
+           </template>
+         </v-list>
+
+
+                 <v-dialog v-model="dialog2" max-width="500px">
+                   <form style="background:white;padding:1em;">
+                    <v-text-field
+                      label="name"
+                      v-model="task.title"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      label="description"
+                      v-model="task.description"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      label="dueDate (aaaa-mm-dd)"
+                      v-model="task.dueDate"
+                      required
+                    ></v-text-field>
+                  <v-btn @click="addTask()" color="success">Create Task</v-btn>
+                </form>
+                 </v-dialog>
   </div>
 </template>
 
@@ -39,6 +58,7 @@
 
     data: () => ({
       drawer: null,
+      dialog2: false,
       task: {title:'', description: '', dueDate: ''},
       items: [
          //{title:"hola", description:'gayyy'}
