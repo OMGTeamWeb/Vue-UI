@@ -1,6 +1,6 @@
 import axios from 'axios'
 import router from '../../router'
-let apiUrl = 'http://localhost:2403/'
+let apiUrl = 'https://desolate-taiga-56447.herokuapp.com/api'
 const state = {
   user: {}
 }
@@ -12,17 +12,11 @@ const mutations = {
 const getters = {}
 const actions = {
   signup({commit, state}, loginData) {
-    axios.post(`${apiUrl}users`, {
-      email: loginData.email,
-      password: loginData.password,
-      username: loginData.username
-    }).then(res =>
-      axios.post(`${apiUrl}users/login`, {
-        email: loginData.email,
-        password: loginData.password,
-        username: loginData.username
-      })
-    ).then((res) => {
+    console.log("HI");
+    axios.post(`${apiUrl}/user/create`, {
+      name: loginData.name,
+      email: loginData.email
+    }).then((res) => {
       commit("setUser", res.data)
       router.push('/')
     }).catch((err) => alert(err))

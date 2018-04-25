@@ -5,14 +5,14 @@
       <v-flex xs12>
         <v-form v-model="valid">
           <v-text-field
-            label="E-mail"
-            v-model="email"
-            required
-          ></v-text-field>
-          <v-text-field
           label="Password"
           v-model="password"
           :counter="10"
+          required
+          ></v-text-field>
+          <v-text-field
+          label="E-mail"
+          v-model="email"
           required
           ></v-text-field>
         </v-form>
