@@ -11,7 +11,7 @@
     <template v-for="(habit, index) in habits">
 
             <v-list-tile avatar :key="habit._Id" @click="">
-              <v-list-tile
+             <v-list-tile
               @click="minScore(index)">
                <v-container fluid class="pa-0">
                <v-layout row wrap>
@@ -20,13 +20,17 @@
                  </v-btn>
               </v-layout>
             </v-container>
-             </v-list-tile>
+          </v-list-tile>
+
+
                <v-list-tile-content>
                  <v-list-tile-title v-html="habit.name"></v-list-tile-title>
                  <v-list-tile-sub-title v-html="habit.typeHabit"></v-list-tile-sub-title>
                  <v-list-tile-sub-title v-html="habit.difficult"></v-list-tile-sub-title>
-                 <v-list-tile-sub-title v-html="habit.score"></v-list-tile-sub-title>
+                 <v-list-tile-sub-title v-bind:class="colorScore(habit.score)" v-html="habit.score">
+                 </v-list-tile-sub-title>
                </v-list-tile-content>
+
                <v-list-tile
                @click="sumScore(index)">
               <v-container fluid class="pa-0">
@@ -107,9 +111,11 @@ export default {
       name: '',
       typeHabit: '',
       difficult: '',
-      score: ''
+      score: '',
+      color: ''
     },
-    habits: [
+    habits: [{
+    }
       //{title:"hola", description:'gayyy'}
     ]
   }),
@@ -140,6 +146,102 @@ export default {
       this.$store.dispatch('addHabit', this.habit)
       this.habit = ""
     },
+
+    getType(index){
+      let newHabit = this.habits[index]
+      console.log(newHabit);
+      if(newHabit.typeHabit == "Good"){
+        newHabit.score=this.calculateGoodScore(newHabit.score, newHabit.difficult)
+        console.log(newHabit.score);
+        this.$store.dispatch('updateHabit', newHabit)
+
+      }
+      else if(newHabit.typeHabit == "Bad"){
+        newHabit.score = this.calculateBadScore(newHabit.score, newHabit.difficult)
+        console.log(newHabit.score);
+
+        this.$store.dispatch('updateHabit', newHabit)
+
+      }
+    },
+
+    calculateGoodScore(score, type){
+      if(score < 0){
+        return score = this.getScore(difficult)
+      }
+      else if(score >= 0 && score < 10){
+        return score = this.getScore(difficult)
+      }
+      else if(score >= 10 && score < 40){
+        return score = this.getScore(difficult)
+      }
+      else if(score >= 40 && score < 50){
+        return score = score + this.getScore(difficult) / 2
+      }
+      else{
+        return score = score + 1
+      }
+    },
+
+    calculateBadScore(score, type){
+      if(score < 0){
+        return score = score - this.getScore(difficult)*2
+      }
+      else if(score >= 0 && score < 10){
+        return score = score - this.getScore(difficult)*1.5
+      }
+      else if(score >= 10 && score < 40){
+        return score = this.getScore(difficult)
+      }
+      else if(score >= 40 && score < 50){
+        return score = this.getScore(difficult)
+      }
+      else{
+        return score = this.getScore(difficult)
+      }
+    },
+
+    getScore(difficult){
+      if (difficult == "Easy") {
+        return 2
+      }else if(difficult == "medium"){
+        return 3
+      }else{
+        return 5
+      }
+    },
+
+    colorScore(score){
+
+      console.log("para color", score);
+      if(score < 0){
+        return {
+          'red': true
+        }
+      }
+      else if(score >= 0 && score < 10){
+        return {
+          'orange': true
+        }
+      }
+      else if(score >= 10 && score < 40){
+        return {
+          'yellow':true
+        }
+      }
+      else if(score >= 40 && score < 50){
+        return {
+          'green': true
+        }
+      }
+      else{
+        console.log("Color azul")
+        return {
+          'blue':true
+        }
+      }
+
+  },
 
         sumScore(index){
           //console.log(index)
@@ -186,30 +288,37 @@ export default {
           this.$store.dispatch('updateHabit', newScore)
           this.colorScore(newScore.score)
           //console.log("Mi nuevo habito: ", newScore)
-        },
-        colorScore(score){
-          console.log("para color", score);
-          if(score < 0){
-            console.log("color rojo")
-          }
-          else if(score >= 0 && score < 10){
-            console.log("Color naranja")
-          }
-          else if(score >= 10 && score < 40){
-            console.log("Color amarillo")
-          }
-          else if(score >= 40 && score < 50){
-            console.log("Color verde")
-          }
-          else{
-            console.log("Color azul")
-          }
         }
-      }
+
+      },
+
 }
 </script>
 
 <style>
+.red{
+  background:none !important;
+  color: red !important;
+}
+
+.blue{
+  background:none !important;
+  color: blue !important;
+}
+
+.yellow{
+  background:none !important;
+  color: #ffc200 !important;
+}
+
+.green{
+  background:none !important;
+  color:green !important;
+}
+.orange{
+  background:none !important;
+  color:orange !important;
+}
 #keep main .container {
   height: 660px;
 }
@@ -222,7 +331,9 @@ export default {
   font-size: 20px;
   color: pink !important;
 }
-
+.list__tile__content{
+  max-width: 800px !important;
+}
 v-text-field {}
 
 .text {
