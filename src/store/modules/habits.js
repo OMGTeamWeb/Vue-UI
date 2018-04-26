@@ -18,19 +18,19 @@ getAllHabits({commit}, userId){
     return res.data
   })
 },
-addHabit({commit, state}, habitData){
-  console.log("DATA:", habitData);
-  axios.post(`${apiHabit}/habit`,{
-    userId: habitData.userId,
-    name: habitData.name,
-    typeHabit: habitData.typeHabit,
-    difficult: habitData.difficult,
-    score: habitData.score
-  }).then((res) => {
-    // commit("serUser", res.data)
-  }).catch((err) => alert(err))
+  addHabit({commit, state}, habitData){
+    console.log("DATA:", habitData);
+    axios.post(`${apiHabit}/habit`,{
+      userId: habitData.userId,
+      name: habitData.name,
+      typeHabit: habitData.typeHabit,
+      difficult: habitData.difficult,
+      score: habitData.score
+    }).then((res) => {
+      // commit("serUser", res.data)
+    }).catch((err) => alert(err))
 
-}
+  }
 }
 export default {
   state,

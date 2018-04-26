@@ -8,21 +8,17 @@
 
   </v-card-text>
   <v-list two-line>
-    <template v-for="(habit, indexx, indexD) in habits">
+    <template v-for="(habit, index, indexD) in habits">
 
-             <v-list-tile avatar :key="habit._Id" @click="">
-               <v-list-tile
-               @click="tumbDown(indexD)">
-               <v-list-tile-action>
-                 <v-icon
-                 color="grey lighten-1"
-                   v-if="selected.indexOf(indexD) < 0"
-                 >thumb_down</v-icon>
-                 <v-icon
-                   color="yellow darken-2"
-                   v-else
-                 >thumb_down</v-icon>
-               </v-list-tile-action>
+            <v-list-tile avatar :key="habit._Id" @click="">
+              <v-list-tile>
+               <v-container fluid class="pa-0">
+               <v-layout row wrap>
+                 <v-btn flat icon color="red">
+                   <v-icon>thumb_down</v-icon>
+                 </v-btn>
+              </v-layout>
+            </v-container>
              </v-list-tile>
                <v-list-tile-content>
                  <v-list-tile-title v-html="habit.name"></v-list-tile-title>
@@ -30,18 +26,14 @@
                  <v-list-tile-sub-title v-html="habit.difficult"></v-list-tile-sub-title>
                  <v-list-tile-sub-title v-html="habit.score"></v-list-tile-sub-title>
                </v-list-tile-content>
-               <v-list-tile
-               @click="tumbUp(indexx)">
-               <v-list-tile-action>
-                 <v-icon
-                 v-if="selected.indexOf(indexx) < 0"
-                   color="grey lighten-1"
-                 >thumb_up</v-icon>
-                 <v-icon
-                   color="yellow darken-2"
-                   v-else
-                 >thumb_up</v-icon>
-               </v-list-tile-action>
+               <v-list-tile>
+              <v-container fluid class="pa-0">
+               <v-layout row wrap>
+                   <v-btn flat icon color="green">
+                     <v-icon>thumb_up</v-icon>
+                   </v-btn>
+               </v-layout>
+             </v-container>
              </v-list-tile>
              </v-list-tile>
              <v-divider></v-divider>
@@ -107,7 +99,7 @@ export default {
   data: () => ({
     drawer: null,
     dialog2: false,
-    selected: [3],
+    selected: [4],
     habit: {
       _Id: '',
       name: '',
@@ -155,15 +147,18 @@ export default {
           this.selected.push(indexD)
         }
       },
-      tumbUp (indexx) {
-        const i = this.selected.indexOf(indexx)
+      tumbUp (index) {
+        const i = this.selected.indexOf(index)
 
           if (i > -1) {
             this.selected.splice(i, 1)
           } else {
-            this.selected.push(indexx)
+            this.selected.push(index)
           }
-        }
+        },
+      //  sumScore(habit.score){
+
+        //}
   }
 }
 </script>
