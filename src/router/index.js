@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Pages/Login'
 import Signup from '@/components/Pages/Signup'
 import Task from '@/components/Tasks/Task'
+import Reports from '@/components/Reports/Reports'
+import AdminReports from '@/components/AdminReports/AdminReports'
 
 Vue.use(Router)
 
@@ -13,6 +15,16 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/reports',
+      name: 'Reports',
+      component: Reports
+    },
+    {
+      path: '/adminreports',
+      name: 'AdminReports',
+      component: AdminReports
     },
     {
       path: '/tasks',
