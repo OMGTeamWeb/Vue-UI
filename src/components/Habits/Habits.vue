@@ -12,7 +12,7 @@
 
             <v-list-tile avatar :key="habit._Id" @click="">
               <v-list-tile
-              @click="sumScore(index)">
+              @click="minScore(index)">
                <v-container fluid class="pa-0">
                <v-layout row wrap>
                  <v-btn flat icon color="red">
@@ -159,7 +159,9 @@ export default {
           }
         },
         sumScore(index){
+          console.log(index)
           let newScore = this.habits[index]
+          console.log(newScore.score)
           if(newScore.difficult == "easy"){
             newScore.score = newScore.score+2
             this.score=newScore.score
@@ -170,6 +172,23 @@ export default {
           }
           if(newScore.difficult == "Hard"){
             newScore.score = newScore.score+5
+            this.score=newScore.score
+          }
+        },
+        minScore(index){
+          console.log(index)
+          let newScore = this.habits[index]
+          console.log(newScore.score)
+          if(newScore.difficult == "easy"){
+            newScore.score = newScore.score-2
+            this.score=newScore.score
+          }
+          if(newScore.difficult == "medium"){
+            newScore.score = newScore.score-3
+            this.score=newScore.score
+          }
+          if(newScore.difficult == "Hard"){
+            newScore.score = newScore.score-5
             this.score=newScore.score
           }
         }
