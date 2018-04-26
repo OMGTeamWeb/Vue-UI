@@ -159,9 +159,21 @@ export default {
           }
         },
         sumScore(index){
-          console.log(index)
+          let newScore = this.habits[index]
+          if(newScore.difficult == "easy"){
+            newScore.score = newScore.score+2
+            this.score=newScore.score
+          }
+          if(newScore.difficult == "medium"){
+            newScore.score = newScore.score+3
+            this.score=newScore.score
+          }
+          if(newScore.difficult == "Hard"){
+            newScore.score = newScore.score+5
+            this.score=newScore.score
+          }
         }
-  }
+      }
 }
 </script>
 
