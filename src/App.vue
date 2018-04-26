@@ -14,7 +14,8 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat href="#/">Tasks</v-btn>
         <v-btn flat href="#/habits">Habits</v-btn>
-        <v-btn flat>Reports</v-btn>
+        <v-btn flat href="#/reports">Reports</v-btn>
+        <v-btn flat href="#/adminreports">Admin Reports</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   <v-content>

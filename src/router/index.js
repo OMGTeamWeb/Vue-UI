@@ -4,13 +4,24 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Pages/Login'
 import Signup from '@/components/Pages/Signup'
 import Task from '@/components/Tasks/Task'
+import Reports from '@/components/Reports/Reports'
+import AdminReports from '@/components/AdminReports/AdminReports'
 import Habits from '@/components/Habits/Habits'
-
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/reports',
+      name: 'Reports',
+      component: Reports
+    },
+    {
+      path: '/adminreports',
+      name: 'AdminReports',
+      component: AdminReports
+    },
     {
       path: '/',
       name: 'Tasks',
