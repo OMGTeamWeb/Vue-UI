@@ -6,6 +6,8 @@
   </div>-->
 
   <v-app>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    
   <!-- <v-navigation-drawer app></v-navigation-drawer> -->
   <v-toolbar>
       <v-toolbar-title>OMGTODOLIST</v-toolbar-title>
