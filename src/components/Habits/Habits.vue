@@ -8,7 +8,7 @@
 
   </v-card-text>
   <v-list two-line>
-    <template v-for="(habit, indexD, indexx) in habits">
+    <template v-for="(habit, indexx, indexD) in habits">
 
              <v-list-tile avatar :key="habit._Id" @click="">
                <v-list-tile
@@ -61,7 +61,6 @@
       </v-text-field>
       <v-subheader class='subtitulo'>Difficult</v-subheader>
       <v-radio-group v-model="habit.difficult" row>
-        {{habit.difficult}}
       <v-radio
         label="Easy"
         color="success"
@@ -108,7 +107,7 @@ export default {
   data: () => ({
     drawer: null,
     dialog2: false,
-    selected: [2],
+    selected: [3],
     habit: {
       _Id: '',
       name: '',
@@ -180,7 +179,7 @@ export default {
 
 .subtitulo {
   font-size: 20px;
-  color: orange !important;
+  color: pink !important;
 }
 
 v-text-field {}
