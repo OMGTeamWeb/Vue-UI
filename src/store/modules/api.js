@@ -45,7 +45,8 @@ const actions = {
       userId: taskData.userId,
       title: taskData.title,
       description: taskData.description,
-      dueDate: taskData.dueDate
+      dueDate: taskData.dueDate,
+      reminder: taskData.reminder
     }).then((res) => {
       // commit("serUser", res.data)
     }).catch((err) => alert(err))
