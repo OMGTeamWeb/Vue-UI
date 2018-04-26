@@ -29,7 +29,17 @@ getAllHabits({commit}, userId){
     }).then((res) => {
       // commit("serUser", res.data)
     }).catch((err) => alert(err))
+  },
+  updateHabit({commit, state}, habitData){
+    axios.put(`${apiHabit}/habit/${habitData._id}`,{
+      userId: habitData.userId,
+      name: habitData.name,
+      typeHabit: habitData.typeHabit,
+      difficult: habitData.difficutl,
+      score: habitData.score
+    }).then((res) => {
 
+    }).catch((err) => alert(err))
   }
 }
 export default {

@@ -159,38 +159,52 @@ export default {
           }
         },
         sumScore(index){
-          console.log(index)
+          //console.log(index)
           let newScore = this.habits[index]
-          console.log(newScore.score)
+          //console.log(newScore.score)
           if(newScore.difficult == "easy"){
             newScore.score = newScore.score+2
-            this.score=newScore.score
+            this.habit.score=newScore.score
           }
-          if(newScore.difficult == "medium"){
+          else if(newScore.difficult == "medium"){
             newScore.score = newScore.score+3
-            this.score=newScore.score
+            this.habit.score=newScore.score
           }
-          if(newScore.difficult == "Hard"){
+          else{
             newScore.score = newScore.score+5
-            this.score=newScore.score
+            this.habit.score=newScore.score
           }
+          console.log("Viejo: ", this.habit.score)
+          newScore.score=this.habit.score
+          console.log("Nuevo", newScore.score)
+          this.$store.dispatch('updateHabit', newScore)
+          console.log("Mi nuevo habito: ", newScore)
         },
         minScore(index){
-          console.log(index)
+
+          //console.log(index)
           let newScore = this.habits[index]
-          console.log(newScore.score)
+        //  console.log(newScore.score)
           if(newScore.difficult == "easy"){
             newScore.score = newScore.score-2
-            this.score=newScore.score
+            this.habit.score=newScore.score
           }
-          if(newScore.difficult == "medium"){
+          else if(newScore.difficult == "medium"){
             newScore.score = newScore.score-3
-            this.score=newScore.score
+            this.habit.score=newScore.score
           }
-          if(newScore.difficult == "Hard"){
+          else{
             newScore.score = newScore.score-5
-            this.score=newScore.score
+            this.habit.score=newScore.score
           }
+          console.log("Viejo: ", this.habit.score)
+          newScore.score=this.habit.score
+          console.log("Nuevo", newScore.score)
+          this.$store.dispatch('updateHabit', newScore)
+          console.log("Mi nuevo habito: ", newScore)
+        },
+        colorScore(index){
+          
         }
       }
 }
