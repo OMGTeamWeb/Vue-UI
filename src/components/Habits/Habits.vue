@@ -8,10 +8,11 @@
 
   </v-card-text>
   <v-list two-line>
-    <template v-for="(habit, index, indexD) in habits">
+    <template v-for="(habit, index) in habits">
 
             <v-list-tile avatar :key="habit._Id" @click="">
-              <v-list-tile>
+              <v-list-tile
+              @click="sumScore(index)">
                <v-container fluid class="pa-0">
                <v-layout row wrap>
                  <v-btn flat icon color="red">
@@ -26,7 +27,8 @@
                  <v-list-tile-sub-title v-html="habit.difficult"></v-list-tile-sub-title>
                  <v-list-tile-sub-title v-html="habit.score"></v-list-tile-sub-title>
                </v-list-tile-content>
-               <v-list-tile>
+               <v-list-tile
+               @click="sumScore(index)">
               <v-container fluid class="pa-0">
                <v-layout row wrap>
                    <v-btn flat icon color="green">
@@ -156,9 +158,9 @@ export default {
             this.selected.push(index)
           }
         },
-      //  sumScore(habit.score){
-
-        //}
+        sumScore(index){
+          console.log(index)
+        }
   }
 }
 </script>
