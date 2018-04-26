@@ -7,14 +7,13 @@
 
   <v-app>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    
   <!-- <v-navigation-drawer app></v-navigation-drawer> -->
   <v-toolbar>
       <v-toolbar-title>OMGTODOLIST</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Tasks</v-btn>
-        <v-btn flat>Habits</v-btn>
+        <v-btn flat href="#/">Tasks</v-btn>
+        <v-btn flat href="#/habits">Habits</v-btn>
         <v-btn flat>Reports</v-btn>
       </v-toolbar-items>
     </v-toolbar>
