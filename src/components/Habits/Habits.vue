@@ -140,24 +140,7 @@ export default {
       this.$store.dispatch('addHabit', this.habit)
       this.habit = ""
     },
-    tumbDown (indexD) {
-      const i = this.selected.indexOf(indexD)
 
-        if (i > -1) {
-          this.selected.splice(i, 1)
-        } else {
-          this.selected.push(indexD)
-        }
-      },
-      tumbUp (index) {
-        const i = this.selected.indexOf(index)
-
-          if (i > -1) {
-            this.selected.splice(i, 1)
-          } else {
-            this.selected.push(index)
-          }
-        },
         sumScore(index){
           //console.log(index)
           let newScore = this.habits[index]
@@ -174,14 +157,14 @@ export default {
             newScore.score = newScore.score+5
             this.habit.score=newScore.score
           }
-          console.log("Viejo: ", this.habit.score)
+          //console.log("Viejo: ", this.habit.score)
           newScore.score=this.habit.score
-          console.log("Nuevo", newScore.score)
+          //console.log("Nuevo", newScore.score)
           this.$store.dispatch('updateHabit', newScore)
-          console.log("Mi nuevo habito: ", newScore)
+          //console.log("Mi nuevo habito: ", newScore)
+          this.colorScore(newScore.score)
         },
         minScore(index){
-
           //console.log(index)
           let newScore = this.habits[index]
         //  console.log(newScore.score)
@@ -197,14 +180,30 @@ export default {
             newScore.score = newScore.score-5
             this.habit.score=newScore.score
           }
-          console.log("Viejo: ", this.habit.score)
+          //console.log("Viejo: ", this.habit.score)
           newScore.score=this.habit.score
-          console.log("Nuevo", newScore.score)
+          //console.log("Nuevo", newScore.score)
           this.$store.dispatch('updateHabit', newScore)
-          console.log("Mi nuevo habito: ", newScore)
+          this.colorScore(newScore.score)
+          //console.log("Mi nuevo habito: ", newScore)
         },
-        colorScore(index){
-          
+        colorScore(score){
+          console.log("para color", score);
+          if(score < 0){
+            console.log("color rojo")
+          }
+          else if(score >= 0 && score < 10){
+            console.log("Color naranja")
+          }
+          else if(score >= 10 && score < 40){
+            console.log("Color amarillo")
+          }
+          else if(score >= 40 && score < 50){
+            console.log("Color verde")
+          }
+          else{
+            console.log("Color azul")
+          }
         }
       }
 }
