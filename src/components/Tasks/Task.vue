@@ -22,14 +22,15 @@
 
                <v-list-tile-action>
                  <v-checkbox
-                  v-model = item._Id
+                  v-model = "item.doneDate"
+                  @click="taskDate(index)"
                 ></v-checkbox>
                </v-list-tile-action>
                <v-list-tile-content>
-                 <v-list-tile-title v-html="item.title"></v-list-tile-title>
-                 <v-list-tile-sub-title v-html="item.description"></v-list-tile-sub-title>
-                 <v-list-tile-sub-title v-html="item.dueDate"></v-list-tile-sub-title>
-                 <v-list-tile-sub-title v-html="item.reminder"></v-list-tile-sub-title>
+                 <v-list-tile-title v-html="item.title" v-model = "item.title"></v-list-tile-title>
+                 <v-list-tile-sub-title v-html="item.description" v-model = "item.description"></v-list-tile-sub-title>
+                 <v-list-tile-sub-title v-html="item.dueDate" v-model = "item.dueDate"></v-list-tile-sub-title>
+                 <v-list-tile-sub-title v-html="item.reminder" v-model = "item.reminder"></v-list-tile-sub-title>
                </v-list-tile-content>
 
              </v-list-tile>
@@ -113,6 +114,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
   export default {
 
     data: () => ({
@@ -122,8 +125,11 @@
       menu: false,
       menu2: false,
       modal: false,
-      task: {_Id:'', title:'', description: '', dueDate: '', reminder:''},
+      task: {_Id:'', title:'', description: '', dueDate: '', reminder:'', doneDate: ''},
       items: [
+        {
+          // title: ''
+        }
          //{title:"hola", description:'gayyy'}
        ]
     }),
@@ -142,7 +148,24 @@
         this.task = {title: this.task.title, description: this.task.description, dueDate: this.task.dueDate, userId: 'd290f1ee-6c54-4b01-90e6-d701748f0852', reminder: this.task.reminder}
         //post
         this.$store.dispatch('addTask', this.task)
-        this.task = ""
+        this.task = ''
+      },
+      taskDate(index){
+        let newTask = this.items[index]
+        console.log("Ant:", this.task.doneDate)
+        if (this.task.doneDate) {
+          this.task.doneDate = moment().format("YYYY-MM-DD")+"T05:00:00.000Z"
+          newTask.doneDate =  moment().format("YYYY-MM-DD")+"T05:00:00.000Z"
+        }else{
+          this.task.doneDate = ''
+          newTask.doneDate = ''
+        }
+        // this.task.doneDate = (!this.task.doneDate) ? moment().format("YYYY-MM-DD") :'' ;
+        console.log("Des:", this.task.doneDate)
+        newTask.doneDate = this.task.doneDate
+        console.log("New:", newTask.doneDate)
+        this.$store.dispatch('updateTask', newTask)
+        console.log("Mi neuva tarea: ",newTask);
       }
     }
   }

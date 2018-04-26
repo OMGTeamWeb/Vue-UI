@@ -51,6 +51,20 @@ const actions = {
       // commit("serUser", res.data)
     }).catch((err) => alert(err))
 
+  },
+  updateTask({commit, state}, taskData){
+    console.log("DATA Done:", taskData.doneDate);
+    axios.put(`${apiTask}/task/${taskData._id}`,{
+      userId: taskData.userId,
+      title: taskData.title,
+      description: taskData.description,
+      dueDate: taskData.dueDate,
+      doneDate: taskData.doneDate,
+      reminder: taskData.reminder
+    }).then((res) => {
+      // commit("serUser", res.data)
+    }).catch((err) => alert(err))
+
   }
 }
 
